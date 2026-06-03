@@ -9,12 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AuthRegisterRouteImport } from './routes/auth.register'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as AppTrainingsRouteImport } from './routes/app.trainings'
+import { Route as AppSosRouteImport } from './routes/app.sos'
+import { Route as AppRatingsRouteImport } from './routes/app.ratings'
+import { Route as AppPromotionsRouteImport } from './routes/app.promotions'
+import { Route as AppLearnRouteImport } from './routes/app.learn'
+import { Route as AppHealthRouteImport } from './routes/app.health'
+import { Route as AppCareRouteImport } from './routes/app.care'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
@@ -30,6 +44,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
 const AuthRegisterRoute = AuthRegisterRouteImport.update({
   id: '/auth/register',
   path: '/auth/register',
@@ -40,53 +59,158 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/auth/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppTrainingsRoute = AppTrainingsRouteImport.update({
+  id: '/trainings',
+  path: '/trainings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSosRoute = AppSosRouteImport.update({
+  id: '/sos',
+  path: '/sos',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRatingsRoute = AppRatingsRouteImport.update({
+  id: '/ratings',
+  path: '/ratings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPromotionsRoute = AppPromotionsRouteImport.update({
+  id: '/promotions',
+  path: '/promotions',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLearnRoute = AppLearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppHealthRoute = AppHealthRouteImport.update({
+  id: '/health',
+  path: '/health',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCareRoute = AppCareRouteImport.update({
+  id: '/care',
+  path: '/care',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/app': typeof AppRoute
+  '/app': typeof AppRouteWithChildren
   '/onboarding': typeof OnboardingRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/app/care': typeof AppCareRoute
+  '/app/health': typeof AppHealthRoute
+  '/app/learn': typeof AppLearnRoute
+  '/app/promotions': typeof AppPromotionsRoute
+  '/app/ratings': typeof AppRatingsRoute
+  '/app/sos': typeof AppSosRoute
+  '/app/trainings': typeof AppTrainingsRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/app': typeof AppRoute
   '/onboarding': typeof OnboardingRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/app/care': typeof AppCareRoute
+  '/app/health': typeof AppHealthRoute
+  '/app/learn': typeof AppLearnRoute
+  '/app/promotions': typeof AppPromotionsRoute
+  '/app/ratings': typeof AppRatingsRoute
+  '/app/sos': typeof AppSosRoute
+  '/app/trainings': typeof AppTrainingsRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/app': typeof AppRoute
+  '/app': typeof AppRouteWithChildren
   '/onboarding': typeof OnboardingRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/app/care': typeof AppCareRoute
+  '/app/health': typeof AppHealthRoute
+  '/app/learn': typeof AppLearnRoute
+  '/app/promotions': typeof AppPromotionsRoute
+  '/app/ratings': typeof AppRatingsRoute
+  '/app/sos': typeof AppSosRoute
+  '/app/trainings': typeof AppTrainingsRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/onboarding' | '/auth/login' | '/auth/register'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/onboarding'
+    | '/sitemap.xml'
+    | '/app/care'
+    | '/app/health'
+    | '/app/learn'
+    | '/app/promotions'
+    | '/app/ratings'
+    | '/app/sos'
+    | '/app/trainings'
+    | '/auth/login'
+    | '/auth/register'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app' | '/onboarding' | '/auth/login' | '/auth/register'
+  to:
+    | '/'
+    | '/onboarding'
+    | '/sitemap.xml'
+    | '/app/care'
+    | '/app/health'
+    | '/app/learn'
+    | '/app/promotions'
+    | '/app/ratings'
+    | '/app/sos'
+    | '/app/trainings'
+    | '/auth/login'
+    | '/auth/register'
+    | '/app'
   id:
     | '__root__'
     | '/'
     | '/app'
     | '/onboarding'
+    | '/sitemap.xml'
+    | '/app/care'
+    | '/app/health'
+    | '/app/learn'
+    | '/app/promotions'
+    | '/app/ratings'
+    | '/app/sos'
+    | '/app/trainings'
     | '/auth/login'
     | '/auth/register'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AppRoute: typeof AppRoute
+  AppRoute: typeof AppRouteWithChildren
   OnboardingRoute: typeof OnboardingRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthRegisterRoute: typeof AuthRegisterRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding': {
       id: '/onboarding'
       path: '/onboarding'
@@ -108,6 +232,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/auth/register': {
       id: '/auth/register'
       path: '/auth/register'
@@ -122,13 +253,87 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/trainings': {
+      id: '/app/trainings'
+      path: '/trainings'
+      fullPath: '/app/trainings'
+      preLoaderRoute: typeof AppTrainingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/sos': {
+      id: '/app/sos'
+      path: '/sos'
+      fullPath: '/app/sos'
+      preLoaderRoute: typeof AppSosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ratings': {
+      id: '/app/ratings'
+      path: '/ratings'
+      fullPath: '/app/ratings'
+      preLoaderRoute: typeof AppRatingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/promotions': {
+      id: '/app/promotions'
+      path: '/promotions'
+      fullPath: '/app/promotions'
+      preLoaderRoute: typeof AppPromotionsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/learn': {
+      id: '/app/learn'
+      path: '/learn'
+      fullPath: '/app/learn'
+      preLoaderRoute: typeof AppLearnRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/health': {
+      id: '/app/health'
+      path: '/health'
+      fullPath: '/app/health'
+      preLoaderRoute: typeof AppHealthRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/care': {
+      id: '/app/care'
+      path: '/care'
+      fullPath: '/app/care'
+      preLoaderRoute: typeof AppCareRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppCareRoute: typeof AppCareRoute
+  AppHealthRoute: typeof AppHealthRoute
+  AppLearnRoute: typeof AppLearnRoute
+  AppPromotionsRoute: typeof AppPromotionsRoute
+  AppRatingsRoute: typeof AppRatingsRoute
+  AppSosRoute: typeof AppSosRoute
+  AppTrainingsRoute: typeof AppTrainingsRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppCareRoute: AppCareRoute,
+  AppHealthRoute: AppHealthRoute,
+  AppLearnRoute: AppLearnRoute,
+  AppPromotionsRoute: AppPromotionsRoute,
+  AppRatingsRoute: AppRatingsRoute,
+  AppSosRoute: AppSosRoute,
+  AppTrainingsRoute: AppTrainingsRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AppRoute: AppRoute,
+  AppRoute: AppRouteWithChildren,
   OnboardingRoute: OnboardingRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,
 }
