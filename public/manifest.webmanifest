@@ -1,0 +1,16 @@
+{
+  "name": "UpCare — Caregiving for Seniors in Kenya",
+  "short_name": "UpCare",
+  "description": "Find trusted caregivers, physiotherapists and counselors for seniors across Kenya. Track medication, manage emergencies, and stay connected with family.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f2e7",
+  "theme_color": "#2d3e7c",
+  "categories": ["health", "medical", "lifestyle"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
