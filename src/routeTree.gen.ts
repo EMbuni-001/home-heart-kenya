@@ -18,6 +18,7 @@ import { Route as AuthRegisterRouteImport } from './routes/auth.register'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AppTrainingsRouteImport } from './routes/app.trainings'
 import { Route as AppSosRouteImport } from './routes/app.sos'
+import { Route as AppRemindersRouteImport } from './routes/app.reminders'
 import { Route as AppRatingsRouteImport } from './routes/app.ratings'
 import { Route as AppPromotionsRouteImport } from './routes/app.promotions'
 import { Route as AppLearnRouteImport } from './routes/app.learn'
@@ -69,6 +70,11 @@ const AppSosRoute = AppSosRouteImport.update({
   path: '/sos',
   getParentRoute: () => AppRoute,
 } as any)
+const AppRemindersRoute = AppRemindersRouteImport.update({
+  id: '/reminders',
+  path: '/reminders',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppRatingsRoute = AppRatingsRouteImport.update({
   id: '/ratings',
   path: '/ratings',
@@ -105,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/app/learn': typeof AppLearnRoute
   '/app/promotions': typeof AppPromotionsRoute
   '/app/ratings': typeof AppRatingsRoute
+  '/app/reminders': typeof AppRemindersRoute
   '/app/sos': typeof AppSosRoute
   '/app/trainings': typeof AppTrainingsRoute
   '/auth/login': typeof AuthLoginRoute
@@ -120,6 +127,7 @@ export interface FileRoutesByTo {
   '/app/learn': typeof AppLearnRoute
   '/app/promotions': typeof AppPromotionsRoute
   '/app/ratings': typeof AppRatingsRoute
+  '/app/reminders': typeof AppRemindersRoute
   '/app/sos': typeof AppSosRoute
   '/app/trainings': typeof AppTrainingsRoute
   '/auth/login': typeof AuthLoginRoute
@@ -137,6 +145,7 @@ export interface FileRoutesById {
   '/app/learn': typeof AppLearnRoute
   '/app/promotions': typeof AppPromotionsRoute
   '/app/ratings': typeof AppRatingsRoute
+  '/app/reminders': typeof AppRemindersRoute
   '/app/sos': typeof AppSosRoute
   '/app/trainings': typeof AppTrainingsRoute
   '/auth/login': typeof AuthLoginRoute
@@ -155,6 +164,7 @@ export interface FileRouteTypes {
     | '/app/learn'
     | '/app/promotions'
     | '/app/ratings'
+    | '/app/reminders'
     | '/app/sos'
     | '/app/trainings'
     | '/auth/login'
@@ -170,6 +180,7 @@ export interface FileRouteTypes {
     | '/app/learn'
     | '/app/promotions'
     | '/app/ratings'
+    | '/app/reminders'
     | '/app/sos'
     | '/app/trainings'
     | '/auth/login'
@@ -186,6 +197,7 @@ export interface FileRouteTypes {
     | '/app/learn'
     | '/app/promotions'
     | '/app/ratings'
+    | '/app/reminders'
     | '/app/sos'
     | '/app/trainings'
     | '/auth/login'
@@ -267,6 +279,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSosRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/reminders': {
+      id: '/app/reminders'
+      path: '/reminders'
+      fullPath: '/app/reminders'
+      preLoaderRoute: typeof AppRemindersRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/ratings': {
       id: '/app/ratings'
       path: '/ratings'
@@ -311,6 +330,7 @@ interface AppRouteChildren {
   AppLearnRoute: typeof AppLearnRoute
   AppPromotionsRoute: typeof AppPromotionsRoute
   AppRatingsRoute: typeof AppRatingsRoute
+  AppRemindersRoute: typeof AppRemindersRoute
   AppSosRoute: typeof AppSosRoute
   AppTrainingsRoute: typeof AppTrainingsRoute
   AppIndexRoute: typeof AppIndexRoute
@@ -322,6 +342,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppLearnRoute: AppLearnRoute,
   AppPromotionsRoute: AppPromotionsRoute,
   AppRatingsRoute: AppRatingsRoute,
+  AppRemindersRoute: AppRemindersRoute,
   AppSosRoute: AppSosRoute,
   AppTrainingsRoute: AppTrainingsRoute,
   AppIndexRoute: AppIndexRoute,
@@ -340,3 +361,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
