@@ -41,6 +41,11 @@
   --color-hope-foreground: var(--hope-foreground);
   --color-trust: var(--trust);
   --color-trust-foreground: var(--trust-foreground);
+  --color-pastel-blush: var(--pastel-blush);
+  --color-pastel-mint: var(--pastel-mint);
+  --color-pastel-sky: var(--pastel-sky);
+  --color-pastel-butter: var(--pastel-butter);
+  --color-pastel-ink: var(--pastel-ink);
 }
 
 :root {
