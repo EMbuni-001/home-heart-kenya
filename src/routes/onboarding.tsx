@@ -24,10 +24,17 @@ function Onboarding() {
   const [role, setRole] = useState<Role | null>(initial ?? null);
   const [tier, setTier] = useState<string>("Intermediate");
   const [service, setService] = useState<string>("Caregiving");
+  const [services, setServices] = useState<string[]>([]);
+
+  const toggleService = (s: string) =>
+    setServices((arr) => (arr.includes(s) ? arr.filter((x) => x !== s) : [...arr, s]));
 
   const next = () => setStep((s) => s + 1);
   const finish = () => {
-    localStorage.setItem("upcare-user", JSON.stringify({ role, tier, service, name: "Guest" }));
+    const payload = role === "provider"
+      ? { role, tier, services, name: "Guest" }
+      : { role, tier, service, name: "Guest" };
+    localStorage.setItem("upcare-user", JSON.stringify(payload));
     toast.success("You're all set! Welcome to UpCare.");
     nav({ to: "/app" });
   };
