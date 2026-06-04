@@ -117,15 +117,15 @@ function Landing() {
           <h2 className="text-3xl font-bold text-center">How UpCare works</h2>
           <ol className="mt-10 grid md:grid-cols-4 gap-4">
             {[
-              ["Tell us", "About your loved one's needs"],
-              ["Match", "We surface vetted carers near you"],
-              ["Book", "Pick the shift, scope and tier"],
-              ["Care on", "Track vitals & rate the visit"],
-            ].map(([t, d], idx) => (
-              <li key={t} className="rounded-2xl bg-card border border-border p-5">
-                <div className="text-trust font-bold">0{idx + 1}</div>
+              { t: "Tell us", d: "About your loved one's needs", bg: "bg-pastel-blush" },
+              { t: "Match", d: "We surface vetted carers near you", bg: "bg-pastel-mint" },
+              { t: "Book", d: "Pick the shift, scope and tier", bg: "bg-pastel-sky" },
+              { t: "Care on", d: "Track vitals & rate the visit", bg: "bg-pastel-butter" },
+            ].map(({ t, d, bg }, idx) => (
+              <li key={t} className={`rounded-2xl ${bg} text-pastel-ink border border-border/40 p-5 soft-shadow`}>
+                <div className="font-bold opacity-70">0{idx + 1}</div>
                 <div className="font-semibold mt-1">{t}</div>
-                <div className="text-sm text-muted-foreground">{d}</div>
+                <div className="text-sm opacity-80 mt-1">{d}</div>
               </li>
             ))}
           </ol>
