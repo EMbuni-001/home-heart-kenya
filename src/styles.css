@@ -41,6 +41,11 @@
   --color-hope-foreground: var(--hope-foreground);
   --color-trust: var(--trust);
   --color-trust-foreground: var(--trust-foreground);
+  --color-pastel-blush: var(--pastel-blush);
+  --color-pastel-mint: var(--pastel-mint);
+  --color-pastel-sky: var(--pastel-sky);
+  --color-pastel-butter: var(--pastel-butter);
+  --color-pastel-ink: var(--pastel-ink);
 }
 
 :root {
@@ -67,6 +72,13 @@
   /* Hope warm sand */
   --hope: oklch(0.85 0.07 70);
   --hope-foreground: oklch(0.25 0.05 50);
+
+  /* Soft pastels tuned to UpCare's calm palette */
+  --pastel-blush: oklch(0.93 0.04 25);
+  --pastel-mint: oklch(0.93 0.05 165);
+  --pastel-sky: oklch(0.93 0.045 235);
+  --pastel-butter: oklch(0.95 0.06 90);
+  --pastel-ink: oklch(0.28 0.05 260);
 
   --secondary: oklch(0.95 0.02 250);
   --secondary-foreground: oklch(0.28 0.05 260);
@@ -109,6 +121,12 @@
   --healing-foreground: oklch(0.15 0.02 260);
   --hope: oklch(0.78 0.09 70);
   --hope-foreground: oklch(0.17 0.04 50);
+
+  --pastel-blush: oklch(0.36 0.05 25);
+  --pastel-mint: oklch(0.34 0.05 165);
+  --pastel-sky: oklch(0.34 0.05 235);
+  --pastel-butter: oklch(0.36 0.06 90);
+  --pastel-ink: oklch(0.96 0.012 85);
 
   --secondary: oklch(0.28 0.03 260);
   --secondary-foreground: oklch(0.96 0.012 85);
