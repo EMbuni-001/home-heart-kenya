@@ -37,12 +37,22 @@ export const tips: Tip[] = [
   { id: "t5", title: "Preventing Falls", condition: "Mobility", body: "Remove loose rugs, light hallways at night, install grab bars in bathrooms." },
 ];
 
-export interface Training { id: string; title: string; date: string; city: string; type: "Training" | "Free Clinic" | "Talk"; }
+export interface Training {
+  id: string;
+  title: string;
+  date: string;
+  city: string;
+  type: "Training" | "Free Clinic" | "Talk";
+  forRoles: ("provider" | "family" | "senior")[];
+  forServices: ("Caregiving" | "Physiotherapy" | "Counseling" | "General")[];
+  minTier: "Assistant" | "Intermediate" | "Professional";
+  capacity: number;
+}
 export const trainings: Training[] = [
-  { id: "tr1", title: "Geriatric First Aid Certification", date: "2026-06-18", city: "Nairobi", type: "Training" },
-  { id: "tr2", title: "Free Eye & BP Screening — Aga Khan", date: "2026-06-22", city: "Mombasa", type: "Free Clinic" },
-  { id: "tr3", title: "Living with Alzheimer's — Public Talk", date: "2026-07-02", city: "Kisumu", type: "Talk" },
-  { id: "tr4", title: "Advanced Physiotherapy for Seniors", date: "2026-07-10", city: "Nairobi", type: "Training" },
+  { id: "tr1", title: "Geriatric First Aid Certification", date: "2026-06-18", city: "Nairobi", type: "Training", forRoles: ["provider", "family"], forServices: ["Caregiving", "General"], minTier: "Assistant", capacity: 24 },
+  { id: "tr2", title: "Free Eye & BP Screening — Aga Khan", date: "2026-06-22", city: "Mombasa", type: "Free Clinic", forRoles: ["senior", "family"], forServices: ["General"], minTier: "Assistant", capacity: 80 },
+  { id: "tr3", title: "Living with Alzheimer's — Public Talk", date: "2026-07-02", city: "Kisumu", type: "Talk", forRoles: ["family", "senior", "provider"], forServices: ["Counseling", "General"], minTier: "Assistant", capacity: 120 },
+  { id: "tr4", title: "Advanced Physiotherapy for Seniors", date: "2026-07-10", city: "Nairobi", type: "Training", forRoles: ["provider"], forServices: ["Physiotherapy"], minTier: "Intermediate", capacity: 18 },
 ];
 
 export interface VitalReading { date: string; systolic: number; diastolic: number; sugar: number; }
