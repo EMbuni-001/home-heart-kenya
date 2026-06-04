@@ -36,6 +36,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
         <nav className="max-w-3xl mx-auto px-4 pb-2 flex gap-2 overflow-x-auto text-sm">
           {[
+            { to: "/app/reminders", label: "Reminders" },
             { to: "/app/trainings", label: "Trainings" },
             { to: "/app/promotions", label: "Promotions" },
             { to: "/app/ratings", label: "Ratings" },
