@@ -79,16 +79,36 @@ function Onboarding() {
 
           {step === 1 && (
             <div>
-              <h1 className="text-3xl font-bold">{role === "provider" ? "What service do you offer?" : "What care do you need?"}</h1>
+              <h1 className="text-3xl font-bold">{role === "provider" ? "What services do you offer?" : "What care do you need?"}</h1>
+              {role === "provider" && (
+                <p className="text-muted-foreground mt-2">Select all that apply — you can update later.</p>
+              )}
               <div className="mt-6 grid grid-cols-1 gap-3">
-                {["Caregiving", "Physiotherapy", "Counseling"].map((s) => (
-                  <button key={s} onClick={() => setService(s)}
-                    className={`p-4 rounded-2xl text-left border-2 ${service === s ? "border-trust bg-accent" : "border-border bg-card"}`}>
-                    <div className="font-semibold">{s}</div>
-                  </button>
-                ))}
+                {["Caregiving", "Physiotherapy", "Counseling"].map((s) => {
+                  const selected = role === "provider" ? services.includes(s) : service === s;
+                  return (
+                    <button
+                      key={s}
+                      onClick={() => (role === "provider" ? toggleService(s) : setService(s))}
+                      className={`p-4 rounded-2xl text-left border-2 flex items-center justify-between ${selected ? "border-trust bg-accent" : "border-border bg-card"}`}
+                    >
+                      <span className="font-semibold">{s}</span>
+                      {role === "provider" && (
+                        <span className={`h-5 w-5 rounded-md border-2 flex items-center justify-center text-xs ${selected ? "bg-trust border-trust text-trust-foreground" : "border-border"}`}>
+                          {selected ? "✓" : ""}
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
-              <button onClick={next} className="mt-6 w-full py-3 rounded-full bg-trust text-trust-foreground font-semibold">Continue</button>
+              <button
+                onClick={next}
+                disabled={role === "provider" && services.length === 0}
+                className="mt-6 w-full py-3 rounded-full bg-trust text-trust-foreground font-semibold disabled:opacity-50"
+              >
+                Continue
+              </button>
             </div>
           )}
 
