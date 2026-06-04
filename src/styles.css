@@ -73,6 +73,13 @@
   --hope: oklch(0.85 0.07 70);
   --hope-foreground: oklch(0.25 0.05 50);
 
+  /* Soft pastels tuned to UpCare's calm palette */
+  --pastel-blush: oklch(0.93 0.04 25);
+  --pastel-mint: oklch(0.93 0.05 165);
+  --pastel-sky: oklch(0.93 0.045 235);
+  --pastel-butter: oklch(0.95 0.06 90);
+  --pastel-ink: oklch(0.28 0.05 260);
+
   --secondary: oklch(0.95 0.02 250);
   --secondary-foreground: oklch(0.28 0.05 260);
   --muted: oklch(0.95 0.012 80);
