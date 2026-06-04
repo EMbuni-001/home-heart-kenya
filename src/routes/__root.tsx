@@ -52,8 +52,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "UpCare — Trusted home care for seniors and patients in Kenya" },
       { name: "twitter:description", content: "Vetted caregivers and therapists for seniors and patients in Kenya. Track medication, check health, manage emergencies and stay close to family — even offline." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c03f38f2-cdb7-4e15-b126-94faea3791c1/id-preview-cd57f0ba--84d0264f-8684-422a-9172-18f720f41423.lovable.app-1780558813435.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c03f38f2-cdb7-4e15-b126-94faea3791c1/id-preview-cd57f0ba--84d0264f-8684-422a-9172-18f720f41423.lovable.app-1780558813435.png" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/u4azq8UNHJT8FCY2PSOe8AcTI8I2/social-images/social-1780591146875-UpCare_Social_Page_Final.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/u4azq8UNHJT8FCY2PSOe8AcTI8I2/social-images/social-1780591146875-UpCare_Social_Page_Final.webp" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
