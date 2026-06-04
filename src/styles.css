@@ -122,6 +122,12 @@
   --hope: oklch(0.78 0.09 70);
   --hope-foreground: oklch(0.17 0.04 50);
 
+  --pastel-blush: oklch(0.36 0.05 25);
+  --pastel-mint: oklch(0.34 0.05 165);
+  --pastel-sky: oklch(0.34 0.05 235);
+  --pastel-butter: oklch(0.36 0.06 90);
+  --pastel-ink: oklch(0.96 0.012 85);
+
   --secondary: oklch(0.28 0.03 260);
   --secondary-foreground: oklch(0.96 0.012 85);
   --muted: oklch(0.26 0.025 260);
