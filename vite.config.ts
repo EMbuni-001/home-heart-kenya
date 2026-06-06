@@ -1,10 +1,18 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { VitePWA } from "vite-plugin-pwa";
 
+// Deploy target is controlled by NITRO_PRESET.
+// - Lovable / Cloudflare (default): unset → "cloudflare-module".
+// - Vercel:  NITRO_PRESET=vercel  (wired automatically in vercel.json)
+// - Netlify: NITRO_PRESET=netlify
+// - Node:    NITRO_PRESET=node-server
+const nitroPreset = process.env.NITRO_PRESET;
+
 export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
+  ...(nitroPreset ? { nitro: { preset: nitroPreset } } : {}),
   vite: {
     plugins: [
       VitePWA({
