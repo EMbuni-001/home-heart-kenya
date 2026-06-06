@@ -3,8 +3,6 @@
   "framework": null,
   "buildCommand": "bun run build",
   "installCommand": "bun install --frozen-lockfile",
-  "outputDirectory": ".vercel/output",
-  "ignoreCommand": "bash -c 'git diff --quiet HEAD^ HEAD -- ":(exclude).env.example" ":(exclude)*.md" ":(exclude).vscode/" && exit 0 || exit 1'",
   "build": {
     "env": {
       "NITRO_PRESET": "vercel",
