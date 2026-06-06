@@ -24,9 +24,23 @@ the sitemap route and the SSR-rendered HTML all work in production.
 4. Build Command: leave blank (uses `vercel.json`).
 5. Install Command: leave blank.
 6. Output Directory: leave blank.
-7. (Optional) Add any runtime env vars your server functions need.
+7. Add environment variables from [`.env.example`](./.env.example) — at
+   minimum `NITRO_PRESET=vercel` and `VITE_SITE_URL=https://<your-domain>`.
+   Add optional integration keys (Supabase, Lovable AI, Twilio, Stripe)
+   only if your server functions use them.
 
 That's it — click **Deploy**.
+
+## Environment variables
+
+The full template lives in [`.env.example`](./.env.example). Copy it to
+`.env.local` for local dev, or paste keys into Vercel → Settings →
+Environment Variables. Rules:
+
+- `VITE_*` are PUBLIC (bundled into client JS) — never put secrets here.
+- Unprefixed names are SERVER-ONLY — read via `process.env.X` inside
+  `createServerFn` handlers or server route handlers.
+- Set each variable for Production, Preview, and Development.
 
 ## CLI alternative
 
