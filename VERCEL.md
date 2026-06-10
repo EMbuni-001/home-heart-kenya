@@ -58,6 +58,29 @@ vercel --prod
 - Service worker / offline cache (built by `vite-plugin-pwa`)
 - Static assets, fonts, images served from Vercel's edge CDN
 
+## PWA / service worker pipeline
+
+The PWA build is part of the same Vercel pipeline — no separate step:
+
+1. `vercel-build` → `vite build` runs the `VitePWA` plugin (see `vite.config.ts`),
+   which emits `sw.js`, the Workbox precache manifest, and hashed
+   `workbox-*.js` runtime chunks into the client output.
+2. Nitro's `vercel` preset copies that client output into
+   `.vercel/output/static/`, so `sw.js` is served from the site root with
+   scope `/` on every deploy.
+3. `vercel.json` headers ensure correct caching:
+   - `/sw.js` → `Cache-Control: max-age=0, must-revalidate` +
+     `Service-Worker-Allowed: /` so browsers always re-check it and adopt
+     the new worker immediately.
+   - `/workbox-*.js` and all other hashed assets → `immutable, max-age=1y`.
+   - The general hashed-asset rule explicitly excludes `sw.js` and
+     `workbox-*` so the cache rules never conflict.
+4. `registerType: "autoUpdate"` in `vite.config.ts` means clients fetch the
+   new `sw.js`, activate it, and refresh the precache on the next visit
+   after each deploy.
+
+
+
 ## Switching targets
 
 | Target          | Command                                 |
