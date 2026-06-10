@@ -11,6 +11,27 @@ const nitroPreset = process.env.NITRO_PRESET;
 export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
+    prerender: {
+      enabled: true,
+      crawlLinks: true,
+      autoSubfolderIndex: true,
+      retryCount: 2,
+    },
+    pages: [
+      { path: "/" },
+      { path: "/onboarding" },
+      { path: "/auth/login" },
+      { path: "/auth/register" },
+      { path: "/app" },
+      { path: "/app/care" },
+      { path: "/app/health" },
+      { path: "/app/reminders" },
+      { path: "/app/learn" },
+      { path: "/app/trainings" },
+      { path: "/app/promotions" },
+      { path: "/app/ratings" },
+      { path: "/app/sos" },
+    ],
   },
   ...(nitroPreset ? { nitro: { preset: nitroPreset } } : {}),
   vite: {
